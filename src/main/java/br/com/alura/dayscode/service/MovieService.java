@@ -13,12 +13,12 @@ public class MovieService {
         return new RestTemplate();
     }
 
-    public void getTopMovies() {
+    public String getTopMovies() {
         RestTemplate restTemplate = restTemplate();
         String url = "https://imdb-api.com/en/API/Top250Movies/k_zn8y3r37";
 
         ResponseEntity<String> response = restTemplate.getForEntity(url, String.class);
 
-        System.out.println(response.getBody());
+        return response.getBody();
     }
 }

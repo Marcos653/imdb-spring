@@ -15,8 +15,8 @@ public class MovieController {
         this.movieService = movieService;
     }
 
-    @RequestMapping("/topMovies")
-    public void getTopMovies() {
-        movieService.getTopMovies();
+    @RequestMapping("/top-movies")
+    public String getTopMovies() {
+        return movieService.getTopMovies();
     }
 }
