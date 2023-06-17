@@ -4,6 +4,9 @@ Este repositório contém a minha solução para o Desafio #7DaysOfCode, onde te
 Dia 1: Consumindo a API do IMDB
 No primeiro dia do desafio, o objetivo é consumir a API do IMDB (Internet Movie Database) para pesquisar os Top 250 filmes e imprimir o JSON correspondente no console da IDE.
 
+Dia 2: Testando a Resposta da API
+No segundo dia do desafio, a tarefa é testar a resposta da API criada no primeiro dia. Nesse sentido, o objetivo é garantir que a API esteja funcionando corretamente e retornando o resultado esperado. Utilizamos classes e anotações do Spring Framework para criar um teste automatizado, o qual verifica se a chamada da API retorna um resultado com status 200 OK e um conteúdo não vazio.
+
 O IMDB é uma das plataformas mais famosas que agrega informações sobre filmes, séries, programas de TV, atores e outros elementos relacionados ao mundo do cinema e da televisão.
 
 Etapas:
