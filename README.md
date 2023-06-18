@@ -11,6 +11,9 @@ Utilizamos classes e anotações do Spring Framework para criar um teste automat
 Dia 3: Modelando a Classe Movie
 No terceiro dia do desafio, organizei a estrutura do meu projeto criando a classe Movie. Essa classe encapsula os atributos de um filme, como título, URL da imagem, nota e ano.
 Utilizei o recurso record do Java para criar uma classe imutável de forma simples e concisa. Agora, em vez de ter várias listas separadas, utilizo uma única List<Movie>, onde cada instância representa um filme.
+  
+Dia 4: Gerando Página HTML
+No quarto dia do desafio, foi o momento de trabalhar com a saída e gerar uma página HTML a partir da lista de objetos Movie no código Java. O desafio consistiu em utilizar o Thymeleaf, uma engine de templates, para gerar a página HTML. Foi criado um template HTML onde foram inseridas tags e expressões Thymeleaf para iterar sobre a lista de filmes e exibir as informações de cada filme, incluindo o pôster. O template foi renderizado no servidor e retornado como resposta HTTP.
 
 O IMDB é uma das plataformas mais famosas que agrega informações sobre filmes, séries, programas de TV, atores e outros elementos relacionados ao mundo do cinema e da televisão.
 
