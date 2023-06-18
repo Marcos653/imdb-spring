@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Movies</title>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+          crossorigin="anonymous">
+</head>
+
+<body>
+
+<div class="d-flex flex-wrap no-gutters">
+    <div th:each="movie : ${movies}" class="col-md-4 mb-3">
+        <div class="mr-2">
+            <div class="card text-white bg-dark" style="max-width: 18rem;">
+                <h4 class="card-header" th:text="${movie.title}"></h4>
+                <div class="card-body">
+                    <img class="card-img" th:src="${movie.urlImage}">
+                    <p class="card-text mt-2" th:text="'Rating: ' + ${movie.rating}"></p>
+                    <p class="card-text" th:text="'Year: ' + ${movie.year}"></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+
+</html>
