@@ -14,6 +14,9 @@ Utilizei o recurso record do Java para criar uma classe imutável de forma simpl
   
 Dia 4: Gerando Página HTML
 No quarto dia do desafio, foi o momento de trabalhar com a saída e gerar uma página HTML a partir da lista de objetos Movie no código Java. O desafio consistiu em utilizar o Thymeleaf, uma engine de templates, para gerar a página HTML. Foi criado um template HTML onde foram inseridas tags e expressões Thymeleaf para iterar sobre a lista de filmes e exibir as informações de cada filme, incluindo o pôster. O template foi renderizado no servidor e retornado como resposta HTTP.
+  
+Dia 5: Refatorando a Chamada da API e Separando Endpoints
+No quinto dia do desafio, focamos em refatorar a chamada da API e separar os endpoints da nossa aplicação. Essas melhorias nos ajudaram a aprimorar o encapsulamento, a organização e a responsabilidade das nossas classes. Criamos uma nova classe chamada ImdbApiClient, que encapsula a chamada da API do IMDB e busca a ApiKey no arquivo de propriedades. Além disso, separamos dois endpoints na nossa aplicação: um para retornar a lista de filmes em formato JSON e outro para retornar a página HTML gerada a partir dessa lista.
 
 O IMDB é uma das plataformas mais famosas que agrega informações sobre filmes, séries, programas de TV, atores e outros elementos relacionados ao mundo do cinema e da televisão.
 
