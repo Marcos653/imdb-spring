@@ -28,4 +28,13 @@ public class MovieControllerTest {
         assertEquals(HttpStatus.OK, response.getStatusCode());
         assertNotNull(response.getBody());
     }
+
+    @Test
+    public void shouldReturnTop250FilmsHtml() {
+        ResponseEntity<String> response = this
+                .restTemplate.getForEntity("http://localhost:" + port + "/top-movies-html", String.class);
+
+        assertEquals(HttpStatus.OK, response.getStatusCode());
+        assertNotNull(response.getBody());
+    }
 }

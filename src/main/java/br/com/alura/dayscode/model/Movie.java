@@ -7,6 +7,16 @@ public class Movie {
     private Double rating;
     private Integer year;
 
+    public Movie(String title, String urlImage, Double rating, Integer year) {
+        this.title = title;
+        this.urlImage = urlImage;
+        this.rating = rating;
+        this.year = year;
+    }
+
+    public Movie() {
+    }
+
     public String getTitle() {
         return title;
     }

@@ -11,7 +11,7 @@ import org.springframework.web.servlet.ModelAndView;
 import java.util.List;
 
 @RestController
-public class MovieController {
+public class  MovieController {
 
     private final MovieService movieService;
 
@@ -21,12 +21,12 @@ public class MovieController {
     }
 
     @GetMapping("/top-movies")
-    public ModelAndView getTopMovies() throws JsonProcessingException {
-        List<Movie> movies = movieService.getTopMovies();
-        ModelAndView modelAndView = new ModelAndView("Movies");
+    public List<Movie> getTopMovies() throws JsonProcessingException {
+        return movieService.getTopMovies();
+    }
 
-        modelAndView.addObject("movies", movies);
-
-        return modelAndView;
+    @GetMapping("/top-movies-html")
+    public ModelAndView getTopMoviesHtml() throws JsonProcessingException {
+        return movieService.createMoviesModelAndView();
     }
 }
