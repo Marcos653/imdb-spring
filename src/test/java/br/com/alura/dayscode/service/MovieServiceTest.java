@@ -20,7 +20,8 @@ import java.util.List;
 
 import static br.com.alura.dayscode.helper.ImdbApiClientHelper.responseBodyImdb;
 import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.when;
+import static org.mockito.ArgumentMatchers.anyString;
+import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
 public class MovieServiceTest {
@@ -36,6 +37,7 @@ public class MovieServiceTest {
 
     @Test
     public void shouldReturnTop250Movies() throws Exception {
+        String title = "Movie";
         String responseBody = responseBodyImdb();
         JsonNode root = new ObjectMapper().readTree(responseBody);
         List<MovieDto> movieDtoList = new ArrayList<>();
@@ -45,9 +47,9 @@ public class MovieServiceTest {
 
         when(imdbApiClient.getBody()).thenReturn(responseBody);
         when(objectMapper.readTree(responseBody)).thenReturn(root);
-        when(objectMapper.readValue(Mockito.anyString(), Mockito.any(TypeReference.class))).thenReturn(movieDtoList);
+        when(objectMapper.readValue(anyString(), Mockito.any(TypeReference.class))).thenReturn(movieDtoList);
 
-        List<Movie> response = movieService.getTopMovies();
+        List<Movie> response = movieService.getTopMovies(title);
 
         assertNotNull(response);
         assertEquals(2, response.size());
@@ -63,6 +65,7 @@ public class MovieServiceTest {
 
     @Test
     public void shouldCreateMoviesModelAndView() throws JsonProcessingException {
+        String title = "test";
         List<MovieDto> movieDtoList = new ArrayList<>();
         movieDtoList.add(new MovieDto("Movie 1", "image1.jpg", "8.5", "2021"));
         movieDtoList.add(new MovieDto("Movie 2", "image2.jpg", "7.9", "2022"));
@@ -73,14 +76,14 @@ public class MovieServiceTest {
 
         when(imdbApiClient.getBody()).thenReturn("responseBody");
 
-        JsonNode itemsNode = Mockito.mock(JsonNode.class);
+        JsonNode itemsNode = mock(JsonNode.class);
 
-        when(objectMapper.readTree(Mockito.anyString())).thenReturn(Mockito.mock(JsonNode.class));
-        when(objectMapper.readValue(Mockito.anyString(), Mockito.any(TypeReference.class))).thenReturn(movieDtoList);
+        when(objectMapper.readTree(anyString())).thenReturn(mock(JsonNode.class));
+        when(objectMapper.readValue(anyString(), any(TypeReference.class))).thenReturn(movieDtoList);
         when(objectMapper.readTree("responseBody").get("items")).thenReturn(itemsNode);
         when(itemsNode.toString()).thenReturn(movieDtoList.toString());
 
-        ModelAndView modelAndView = movieService.createMoviesModelAndView();
+        ModelAndView modelAndView = movieService.createMoviesModelAndView(title);
 
         assertNotNull(modelAndView);
         assertEquals("Movies", modelAndView.getViewName());

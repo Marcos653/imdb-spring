@@ -2,6 +2,7 @@ package br.com.alura.dayscode.model;
 
 public class Movie {
 
+    private Long id;
     private String title;
     private String urlImage;
     private Double rating;
@@ -15,6 +16,14 @@ public class Movie {
     }
 
     public Movie() {
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getTitle() {
