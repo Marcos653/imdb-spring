@@ -18,6 +18,9 @@ No quarto dia do desafio, foi o momento de trabalhar com a saída e gerar uma p�
 Dia 5: Refatorando a Chamada da API e Separando Endpoints
 No quinto dia do desafio, focamos em refatorar a chamada da API e separar os endpoints da nossa aplicação. Essas melhorias nos ajudaram a aprimorar o encapsulamento, a organização e a responsabilidade das nossas classes. Criamos uma nova classe chamada ImdbApiClient, que encapsula a chamada da API do IMDB e busca a ApiKey no arquivo de propriedades. Além disso, separamos dois endpoints na nossa aplicação: um para retornar a lista de filmes em formato JSON e outro para retornar a página HTML gerada a partir dessa lista.
 
+Dia 6: Filtrando Resultados por Título e Armazenando Filmes Pesquisados
+No sexto dia do desafio, o objetivo é adicionar funcionalidades ao nosso serviço GET para filtrar os resultados por título. Utilizamos o parâmetro title recebido por QueryParam para filtrar a lista de filmes e retornar apenas os que contêm a palavra recebida no título.
+
 O IMDB é uma das plataformas mais famosas que agrega informações sobre filmes, séries, programas de TV, atores e outros elementos relacionados ao mundo do cinema e da televisão.
 
 Etapas:
