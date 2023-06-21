@@ -21,6 +21,9 @@ No quinto dia do desafio, focamos em refatorar a chamada da API e separar os end
 Dia 6: Filtrando Resultados por Título e Armazenando Filmes Pesquisados
 No sexto dia do desafio, o objetivo é adicionar funcionalidades ao nosso serviço GET para filtrar os resultados por título. Utilizamos o parâmetro title recebido por QueryParam para filtrar a lista de filmes e retornar apenas os que contêm a palavra recebida no título.
 
+Dia 7: Adicionando Filmes aos Favoritos
+No sétimo e último dia do desafio, implementei a funcionalidade de adicionar filmes aos favoritos utilizando o método POST. Criei um novo endpoint na classe controladora para receber o ID do filme favorito e adicioná-lo à lista de favoritos. Também criei um serviço GET para retornar a lista de filmes favoritos. Além disso, foram criados testes para verificar o funcionamento correto dos serviços POST e GET dos filmes favoritos.
+
 O IMDB é uma das plataformas mais famosas que agrega informações sobre filmes, séries, programas de TV, atores e outros elementos relacionados ao mundo do cinema e da televisão.
 
 Etapas:
