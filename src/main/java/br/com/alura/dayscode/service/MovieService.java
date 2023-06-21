@@ -13,6 +13,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class MovieService {
@@ -20,14 +21,19 @@ public class MovieService {
     private final ImdbApiClient client;
     private final ObjectMapper mapper;
     private final List<Movie> movies;
+    private final List<Movie> favoriteMovies;
+    private final List<Movie> historyMovies;
     private long idCounter;
 
     @Autowired
-    public MovieService(ImdbApiClient client, ObjectMapper mapper) {
+    public MovieService(ImdbApiClient client, ObjectMapper mapper) throws JsonProcessingException {
         this.client = client;
         this.mapper = mapper;
         this.movies = new ArrayList<>();
+        this.favoriteMovies = new ArrayList<>();
+        this.historyMovies = new ArrayList<>();
         this.idCounter = 1;
+        fetchAndPopulateMovies();
     }
 
     public List<Movie> getTopMovies(String title) throws JsonProcessingException {
@@ -39,6 +45,7 @@ public class MovieService {
 
         if (title != null) {
             filterMovies(filteredMovies, title);
+            addMoviesToHistory(filteredMovies);
         }
 
         return filteredMovies;
@@ -76,6 +83,60 @@ public class MovieService {
         List<Movie> filteredMovies = getTopMovies(title);
         ModelAndView modelAndView = new ModelAndView("Movies");
         modelAndView.addObject("movies", filteredMovies);
+        return modelAndView;
+    }
+
+    public ModelAndView getHistoryMoviesModelAndView() {
+        ModelAndView modelAndView = new ModelAndView("Movies");
+        modelAndView.addObject("movies", historyMovies);
+        return modelAndView;
+    }
+
+    public Movie addFavoriteMovies(Long movieId) {
+        Optional<Movie> movieOptional = movies.stream()
+                .filter(movie -> movie.getId().equals(movieId))
+                .findFirst();
+
+        if (movieOptional.isPresent()) {
+            Movie movie = movieOptional.get();
+
+            addMovieToFavorite(movie);
+
+            return movie;
+        }
+
+        return null;
+    }
+
+    private void addMovieToFavorite(Movie movie) {
+        if (!favoriteMovies.contains(movie)) {
+            favoriteMovies.add(movie);
+        }
+    }
+
+    public void addMoviesToHistory(List<Movie> movies) {
+        movies.stream()
+                .filter(movie -> !historyMovies.contains(movie))
+                .forEach(historyMovies::add);
+    }
+
+    public List<Movie> getFavoriteMovies() {
+        return favoriteMovies;
+    }
+
+    public List<Movie> getHistoryMovies() {
+        return historyMovies;
+    }
+
+    public ModelAndView addFavoriteMoviesModelAndView(Long movieId) {
+        ModelAndView modelAndView = new ModelAndView("Movies");
+        modelAndView.addObject("movies", addFavoriteMovies(movieId));
+        return modelAndView;
+    }
+
+    public ModelAndView getFavoriteMoviesModelAndView() {
+        ModelAndView modelAndView = new ModelAndView("Movies");
+        modelAndView.addObject("movies", getFavoriteMovies());
         return modelAndView;
     }
 }

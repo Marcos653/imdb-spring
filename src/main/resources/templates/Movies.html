@@ -3,9 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Movies</title>
 
     <meta charset="utf-8">
@@ -17,15 +15,47 @@
 
 <body>
 
-<div class="d-flex flex-wrap no-gutters">
-    <div th:each="movie : ${movies}" class="col-md-4 mb-3">
-        <div class="mr-2">
-            <div class="card text-white bg-dark" style="max-width: 18rem;">
-                <h4 class="card-header" th:text="${movie.title}"></h4>
-                <div class="card-body">
-                    <img class="card-img" th:src="${movie.urlImage}">
-                    <p class="card-text mt-2" th:text="'Rating: ' + ${movie.rating}"></p>
-                    <p class="card-text" th:text="'Year: ' + ${movie.year}"></p>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" href="/top-movies-html">Movie App</a>
+    <div class="collapse navbar-collapse">
+        <ul class="navbar-nav">
+            <li class="nav-item">
+                <a class="nav-link" href="/history-html">Histórico de Pesquisa</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/my-favorite-movies-html">Meus Favoritos</a>
+            </li>
+        </ul>
+        <form class="form-inline ml-auto" action="/top-movies-html" method="GET">
+            <input class="form-control mr-sm-2" type="search" placeholder="Pesquisar" aria-label="Search"
+                   th:value="${titleFilter}" name="title">
+            <button class="btn btn-outline-light my-2 my-sm-0" type="submit">Pesquisar</button>
+        </form>
+    </div>
+</nav>
+
+<div class="container mt-4">
+    <div class="row">
+        <div class="col-md-12">
+            <h2>Filmes</h2>
+        </div>
+    </div>
+    <div class="row">
+        <div th:each="movie : ${movies}" class="col-md-4 mb-3">
+            <div class="mr-2">
+                <div class="card text-white bg-dark" style="max-width: 18rem;">
+                    <h4 class="card-header" th:text="${movie.title}"></h4>
+                    <div class="card-body">
+                        <img class="card-img" th:src="${movie.urlImage}">
+                        <p class="card-text mt-2" th:text="'Rating: ' + ${movie.rating}"></p>
+                        <p class="card-text" th:text="'Year: ' + ${movie.year}"></p>
+                    </div>
+                        <form th:action="@{'/favorite/' + ${movie.id}}" method="POST" style="display: inline;">
+                            <button class="btn btn-primary btn-favorite" type="submit">
+                                Favoritar
+                            </button>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
